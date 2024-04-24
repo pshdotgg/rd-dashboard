@@ -28,6 +28,15 @@ export const Icons = {
       height={20}
     />
   ),
+  Thermometer: ({ className }: { className?: string }) => (
+    <Image
+      className={className}
+      src='/dashboard/thermometer.svg'
+      alt='thermometer'
+      width={20}
+      height={20}
+    />
+  ),
   DashboardLogo: ({ className }: { className?: string }) => (
     <Image
       className={className}
