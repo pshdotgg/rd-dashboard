@@ -1,6 +1,42 @@
 import Image from 'next/image'
 
 export const Icons = {
+  DashboardLogo: ({ className }: { className?: string }) => (
+    <Image
+      className={className}
+      src='/dashboard/dashboardLogo.svg'
+      alt='logo'
+      width={135}
+      height={29}
+    />
+  ),
+  MenuDots: ({ className }: { className?: string }) => (
+    <Image
+      className={className}
+      src='/dashboard/menu.svg'
+      alt='menu'
+      width={20}
+      height={20}
+    />
+  ),
+  Notification: ({ className }: { className?: string }) => (
+    <Image
+      className={className}
+      src='/dashboard/notification.svg'
+      alt='notification'
+      width={20}
+      height={20}
+    />
+  ),
+  Search: ({ className }: { className?: string }) => (
+    <Image
+      className={className}
+      src='/dashboard/search.svg'
+      alt='search'
+      width={20}
+      height={20}
+    />
+  ),
   DashboardMenu: ({ className }: { className?: string }) => (
     <Image
       className={className}
