@@ -4,7 +4,7 @@ import { Icons } from './Icons'
 
 const Sidebar = () => {
   return (
-    <div className='flex flex-col bg-white gap-7 min-w-16 py-6 h-full drop-shadow items-center px-4'>
+    <div className='flex flex-col bg-white gap-7 min-w-16 py-6 drop-shadow items-center px-4'>
       <Image src='/logo.svg' alt='logo' width={32} height={29} />
       <Icons.DashboardMenu />
       <Icons.AddToQueue />

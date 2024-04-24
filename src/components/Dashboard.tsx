@@ -1,23 +1,30 @@
+'use client'
+
 import React from 'react'
 import { Icons } from './Icons'
 import { Separator } from './ui/separator'
 import { Button } from './ui/button'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
+import DataChartCard from './DataChartCard'
+import { DATA } from '@/data'
 
 const Dashboard = () => {
   return (
-    <section className='px-5 py-6 w-full flex flex-col gap-6'>
+    <section className='px-5 py-6 w-full flex flex-col gap-8'>
       <DashboardHeader />
+      <Charts />
       <QuickActions />
       <HighPriorityAlerts />
     </section>
+  )
+}
+
+const Charts = () => {
+  return (
+    <div className='flex gap-5 w-full justify-between'>
+      {DATA.map((data) => (
+        <DataChartCard key={data.name} data={data} />
+      ))}
+    </div>
   )
 }
 
