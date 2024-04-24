@@ -1,6 +1,33 @@
 import Image from 'next/image'
 
 export const Icons = {
+  Truck: ({ className }: { className?: string }) => (
+    <Image
+      className={className}
+      src='/dashboard/truck.svg'
+      alt='truck'
+      width={20}
+      height={20}
+    />
+  ),
+  Trailer: ({ className }: { className?: string }) => (
+    <Image
+      className={className}
+      src='/dashboard/trailer.svg'
+      alt='trailer'
+      width={20}
+      height={20}
+    />
+  ),
+  User: ({ className }: { className?: string }) => (
+    <Image
+      className={className}
+      src='/dashboard/user.svg'
+      alt='user'
+      width={20}
+      height={20}
+    />
+  ),
   DashboardLogo: ({ className }: { className?: string }) => (
     <Image
       className={className}
