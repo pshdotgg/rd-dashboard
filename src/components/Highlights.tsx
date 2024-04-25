@@ -2,6 +2,11 @@ import React from 'react'
 import { Button } from './ui/button'
 import { Separator } from './ui/separator'
 
+interface ActivityType {
+  description: string
+  status: string
+}
+
 async function getActivities() {
   const res = await fetch('http://localhost:3000/api/v1/activities')
 
@@ -9,7 +14,7 @@ async function getActivities() {
     throw new Error('Failed to fetch data')
   }
 
-  const activities = await res.json()
+  const activities: ActivityType[] = await res.json()
 
   const completedActivities = activities.filter(
     (activity) => activity.status === 'completed'
@@ -52,7 +57,7 @@ const Highlights = async () => {
   )
 }
 
-const Activity = ({ activities }) => {
+const Activity = ({ activities }: { activities: ActivityType[] }) => {
   return (
     <div>
       <div className='flex justify-between items-center'>

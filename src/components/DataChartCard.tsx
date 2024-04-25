@@ -1,10 +1,11 @@
 'use client'
 
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts'
+import { ChartDataType } from './Dashboard'
 
 const COLORS = ['#FFCB49', '#7464FF', '#4FD2B5']
 
-const DataChartCard = ({ data }) => {
+const DataChartCard = ({ data }: { data: ChartDataType }) => {
   return (
     <div className='bg-white drop-shadow px-4 pt-6 pb-3 rounded-xl w-full max-w-60'>
       <h4 className='text-sm'>{data.name}</h4>
@@ -25,7 +26,7 @@ const DataChartCard = ({ data }) => {
   )
 }
 
-const DataChart = ({ data }) => {
+const DataChart = ({ data }: { data: { name: string; value: number }[] }) => {
   const total = data.reduce((acc, curr) => acc + curr.value, 0)
   return (
     <PieChart className='mx-auto' width={150} height={150}>

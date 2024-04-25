@@ -5,6 +5,14 @@ import { Separator } from './ui/separator'
 import { Button } from './ui/button'
 import DataChartCard from './DataChartCard'
 
+export interface ChartDataType {
+  name: string
+  data: {
+    name: string
+    value: number
+  }[]
+}
+
 async function getChartData() {
   const res = await fetch('http://localhost:3000/api/v1/chart')
 
@@ -37,11 +45,12 @@ const Dashboard = () => {
 }
 
 const Charts = async () => {
-  const data = await getChartData()
+  const data: ChartDataType[] = await getChartData()
+
   return (
     <div className='flex gap-5 w-full justify-between'>
-      {data.map((data) => (
-        <DataChartCard key={data.name} data={data} />
+      {data.map((item) => (
+        <DataChartCard key={item.name} data={item} />
       ))}
     </div>
   )
@@ -147,17 +156,26 @@ const HighPriorityAlerts = async () => {
       <div className='flex items-center gap-4'>
         {data
           .slice(0, 2)
-          .map(({ title, description, date, loadNumber, customer, type }) => (
-            <Alert
-              key={title}
-              title={title}
-              description={description}
-              date={date}
-              loadNumber={loadNumber}
-              customer={customer}
-              type={type}
-            />
-          ))}
+          .map(
+            ({
+              title,
+              description,
+              date,
+              loadNumber,
+              customer,
+              type,
+            }: AlertProps) => (
+              <Alert
+                key={title}
+                title={title}
+                description={description}
+                date={date}
+                loadNumber={loadNumber}
+                customer={customer}
+                type={type}
+              />
+            )
+          )}
       </div>
     </div>
   )
