@@ -236,7 +236,10 @@ const Alert = ({
         <Button variant='ghost' className='underline'>
           Ignore
         </Button>
-        <Button variant='default' className='bg-[#1A3875] px-3 py-2'>
+        <Button
+          variant='default'
+          className='bg-[#1A3875] hover:bg-blue-950 px-3 py-2'
+        >
           Resolve
         </Button>
       </div>

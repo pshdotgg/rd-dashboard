@@ -50,7 +50,7 @@ const Highlights = async () => {
             totalPayments={5}
           />
         </div>
-        <div className='flex flex-col sm:max-md:flex-row sm:max-md:gap-5'>
+        <div className='flex flex-col gap-5 sm:max-md:flex-row'>
           <Activity activities={completedActivities} title='Completed' />
           <Activity activities={scheduledActivities} title='Scheduled' />
         </div>
@@ -72,7 +72,7 @@ const Activity = ({
         <h3 className='text-sm font-medium'>
           {title} Activities ({activities.length})
         </h3>
-        <Button variant='link' className='text-[#11111] text-xs underline'>
+        <Button variant='ghost' className='text-[#11111] text-xs underline'>
           View all
         </Button>
       </div>
