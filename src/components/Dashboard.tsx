@@ -48,7 +48,7 @@ const Charts = async () => {
   const data: ChartDataType[] = await getChartData()
 
   return (
-    <div className='flex gap-5 w-full justify-between'>
+    <div className='grid grid-cols-4 w-full gap-5 max-sm:grid-cols-2 sm:max-xl:grid-cols-2 place-items-center '>
       {data.map((item) => (
         <DataChartCard key={item.name} data={item} />
       ))}
@@ -60,7 +60,7 @@ const DashboardHeader = () => {
   return (
     <div className='flex justify-between items-center'>
       <Icons.DashboardLogo />
-      <div className='rounded-2xl drop-shadow bg-white justify-center flex gap-2 h-8 w-[132px]'>
+      <div className='rounded-2xl drop-shadow bg-white justify-center flex gap-2 h-8 px-2 max-w-[132px]'>
         <Icons.Search className='cursor-pointer' />
         <Separator orientation='vertical' className='bg-[#CBCBCB] h-4 my-2' />
         <Icons.Notification className='cursor-pointer' />
@@ -73,9 +73,9 @@ const DashboardHeader = () => {
 
 const QuickActions = () => {
   return (
-    <div className='w-full min-h-20'>
+    <div className='max-w-full min-h-20 '>
       <h3 className='font-medium text-lg pb-3'>Quick Actions</h3>
-      <div className='bg-white flex justify-center items-center px-12 gap-12 py-4 rounded-2xl drop-shadow w-full'>
+      <div className='bg-white flex max-md:flex-col justify-center items-center xl:px-12 gap-5 md:max-lg:gap-1 xl:gap-12 py-4 rounded-2xl drop-shadow w-full'>
         <Button
           variant='link'
           className='text-sm flex flex-col gap-1.5 justify-center items-center'
@@ -86,7 +86,11 @@ const QuickActions = () => {
 
         <Separator
           orientation='vertical'
-          className='bg-[#CBCBCB] h-12 w-[1.5px]'
+          className='bg-[#CBCBCB] max-md:hidden h-12 w-[1.5px]'
+        />
+        <Separator
+          orientation='horizontal'
+          className='bg-[#CBCBCB] md:hidden w-full h-[1.5px]'
         />
 
         <Button
@@ -99,7 +103,11 @@ const QuickActions = () => {
 
         <Separator
           orientation='vertical'
-          className='bg-[#CBCBCB] h-12 w-[1.5px]'
+          className='bg-[#CBCBCB] h-12 max-md:hidden w-[1.5px]'
+        />
+        <Separator
+          orientation='horizontal'
+          className='bg-[#CBCBCB] md:hidden w-full h-[1.5px]'
         />
 
         <Button
@@ -112,7 +120,11 @@ const QuickActions = () => {
 
         <Separator
           orientation='vertical'
-          className='bg-[#CBCBCB] h-12 w-[1.5px]'
+          className='bg-[#CBCBCB] h-12 max-md:hidden w-[1.5px]'
+        />
+        <Separator
+          orientation='horizontal'
+          className='bg-[#CBCBCB] md:hidden w-full h-[1.5px]'
         />
 
         <Button
@@ -125,7 +137,11 @@ const QuickActions = () => {
 
         <Separator
           orientation='vertical'
-          className='bg-[#CBCBCB] h-12 w-[1.5px]'
+          className='bg-[#CBCBCB] h-12 max-md:hidden w-[1.5px]'
+        />
+        <Separator
+          orientation='horizontal'
+          className='bg-[#CBCBCB] md:hidden w-full h-[1.5px]'
         />
 
         <Button
@@ -146,14 +162,14 @@ const HighPriorityAlerts = async () => {
   return (
     <div className='w-full min-h-20'>
       <div className='flex justify-between items-center gap-5'>
-        <h3 className='font-medium text-lg pb-4'>
+        <h3 className='font-medium text-lg my-2'>
           High Priority Alerts ({data.length})
         </h3>
-        <Button variant='link' className='text-sm text-[#1A3875]'>
+        <Button variant='link' className='text-sm text-[#1A3875] p-0'>
           View All <Icons.RightChevron />
         </Button>
       </div>
-      <div className='flex items-center gap-4'>
+      <div className='flex max-lg:flex-col sm:max-md:flex-row items-center justify-between gap-5 lg:gap-14'>
         {data
           .slice(0, 2)
           .map(
@@ -199,7 +215,7 @@ const Alert = ({
   date,
 }: AlertProps) => {
   return (
-    <div className='bg-white rounded-2xl drop-shadow text-xs text-[#111111] max-w-96 p-3'>
+    <div className='bg-white rounded-2xl drop-shadow text-xs text-[#111111] w-full xl:max-w-[520px] max-w-full sm:max-md:max-w-80 p-3'>
       <div className='flex justify-between items-center w-full'>
         <div className='flex gap-2 items-center'>
           <div className='rounded flex justify-center items-center bg-[#e0eaff] drop-shadow-sm w-8 h-8'>

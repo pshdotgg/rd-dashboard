@@ -30,13 +30,13 @@ const Highlights = async () => {
   const { completedActivities, scheduledActivities } = await getActivities()
 
   return (
-    <section className='bg-white flex flex-col drop-shadow px-4 py-6 max-w-screen-md w-full'>
+    <section className='bg-white flex flex-col drop-shadow px-4 py-6 lg:max-w-sm w-full'>
       <div className='flex pb-3.5 flex-col gap-1.5'>
         <h3 className='font-medium text-base'>Todays Highlights (14)</h3>
         <span className='text-[#676666] text-xs'>19 Mar 2024</span>
       </div>
       <div className='flex flex-col gap-6'>
-        <div className='flex gap-3'>
+        <div className='flex gap-3 justify-between'>
           <AccountCard
             type='Income'
             totalValue='100000'
@@ -50,19 +50,27 @@ const Highlights = async () => {
             totalPayments={5}
           />
         </div>
-        <Activity activities={completedActivities} />
-        <Activity activities={scheduledActivities} />
+        <div className='flex flex-col sm:max-md:flex-row sm:max-md:gap-5'>
+          <Activity activities={completedActivities} title='Completed' />
+          <Activity activities={scheduledActivities} title='Scheduled' />
+        </div>
       </div>
     </section>
   )
 }
 
-const Activity = ({ activities }: { activities: ActivityType[] }) => {
+const Activity = ({
+  title,
+  activities,
+}: {
+  title: string
+  activities: ActivityType[]
+}) => {
   return (
     <div>
       <div className='flex justify-between items-center'>
         <h3 className='text-sm font-medium'>
-          Scheduled Activities ({activities.length})
+          {title} Activities ({activities.length})
         </h3>
         <Button variant='link' className='text-[#11111] text-xs underline'>
           View all
@@ -70,7 +78,7 @@ const Activity = ({ activities }: { activities: ActivityType[] }) => {
       </div>
       <div className='rounded border border-1 border-[#cbcbcb]'>
         {activities.slice(0, 4).map(({ description }, i) => (
-          <div key={description} className='max-h-16'>
+          <div key={description + i} className='max-h-16 sm:max-md:h-14'>
             <p className='text-xs px-3 py-3.5'>
               {description.length > 100
                 ? `${description.slice(0, 100)}...`
@@ -98,7 +106,7 @@ const AccountCard = ({
   totalPayments,
 }: AccountCardProps) => {
   return (
-    <div className='flex flex-col w-[155px] p-3 border border-1 border-[#CBCBCB] rounded'>
+    <div className='flex flex-col w-[155px] max-md:w-80 p-3 border border-1 border-[#CBCBCB] rounded'>
       <span className='text-[#676666] text-xs'>{type}</span>
       <span
         className={`font-medium text-base mb-1 mt-2 ${
