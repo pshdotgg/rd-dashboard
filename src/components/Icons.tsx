@@ -1,6 +1,15 @@
 import Image from 'next/image'
 
 export const Icons = {
+  RightChevron: ({ className }: { className?: string }) => (
+    <Image
+      className={className}
+      src='/dashboard/rightChevron.svg'
+      alt='right chevron'
+      width={20}
+      height={20}
+    />
+  ),
   Truck: ({ className }: { className?: string }) => (
     <Image
       className={className}

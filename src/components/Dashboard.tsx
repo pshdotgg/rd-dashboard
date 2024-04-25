@@ -6,7 +6,7 @@ import { Button } from './ui/button'
 import DataChartCard from './DataChartCard'
 
 async function getChartData() {
-  const res = await fetch('http://localhost:3000/api/v1/chartData')
+  const res = await fetch('http://localhost:3000/api/v1/chart')
 
   if (!res.ok) {
     throw new Error('Failed to fetch data')
@@ -52,11 +52,11 @@ const DashboardHeader = () => {
     <div className='flex justify-between items-center'>
       <Icons.DashboardLogo />
       <div className='rounded-2xl drop-shadow bg-white justify-center flex gap-2 h-8 w-[132px]'>
-        <Icons.Search />
+        <Icons.Search className='cursor-pointer' />
         <Separator orientation='vertical' className='bg-[#CBCBCB] h-4 my-2' />
-        <Icons.Notification />
+        <Icons.Notification className='cursor-pointer' />
         <Separator orientation='vertical' className='bg-[#CBCBCB] h-4 my-2' />
-        <Icons.MenuDots />
+        <Icons.MenuDots className='cursor-pointer' />
       </div>
     </div>
   )
@@ -136,9 +136,14 @@ const HighPriorityAlerts = async () => {
 
   return (
     <div className='w-full min-h-20'>
-      <h3 className='font-medium text-lg pb-4'>
-        High Priority Alerts ({data.length})
-      </h3>
+      <div className='flex justify-between items-center gap-5'>
+        <h3 className='font-medium text-lg pb-4'>
+          High Priority Alerts ({data.length})
+        </h3>
+        <Button variant='link' className='text-sm text-[#1A3875]'>
+          View All <Icons.RightChevron />
+        </Button>
+      </div>
       <div className='flex items-center gap-4'>
         {data
           .slice(0, 2)
