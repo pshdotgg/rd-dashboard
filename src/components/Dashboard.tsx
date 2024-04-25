@@ -1,11 +1,29 @@
-'use client'
-
+'use server'
 import React from 'react'
 import { Icons } from './Icons'
 import { Separator } from './ui/separator'
 import { Button } from './ui/button'
 import DataChartCard from './DataChartCard'
-import { DATA } from '@/data'
+
+async function getChartData() {
+  const res = await fetch('http://localhost:3000/api/v1/chartData')
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch data')
+  }
+
+  return res.json()
+}
+
+async function getAlerts() {
+  const res = await fetch('http://localhost:3000/api/v1/alerts')
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch data')
+  }
+
+  return res.json()
+}
 
 const Dashboard = () => {
   return (
@@ -18,10 +36,11 @@ const Dashboard = () => {
   )
 }
 
-const Charts = () => {
+const Charts = async () => {
+  const data = await getChartData()
   return (
     <div className='flex gap-5 w-full justify-between'>
-      {DATA.map((data) => (
+      {data.map((data) => (
         <DataChartCard key={data.name} data={data} />
       ))}
     </div>
@@ -112,29 +131,28 @@ const QuickActions = () => {
   )
 }
 
-const HighPriorityAlerts = () => {
+const HighPriorityAlerts = async () => {
+  const data = await getAlerts()
+
   return (
     <div className='w-full min-h-20'>
-      <h3 className='font-medium text-lg pb-4'>High Priority Alerts (14)</h3>
-      <div className='flex items-center gap-14'>
-        <Alert
-          title='David Raised Concern'
-          description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eius mod
-        tempor incididunt ut labore et dolore magna aliqua'
-          date='13 Feb 24'
-          loadNumber={12454}
-          customer='RoaDo demo Bangalore'
-          type='concern'
-        />
-        <Alert
-          title='Reefer Temp. out of range'
-          description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eius mod
-        tempor incididunt ut labore et dolore magna aliqua'
-          date='13 Feb 24'
-          loadNumber={12454}
-          customer='RoaDo demo Bangalore'
-          type='temp'
-        />
+      <h3 className='font-medium text-lg pb-4'>
+        High Priority Alerts ({data.length})
+      </h3>
+      <div className='flex items-center gap-4'>
+        {data
+          .slice(0, 2)
+          .map(({ title, description, date, loadNumber, customer, type }) => (
+            <Alert
+              key={title}
+              title={title}
+              description={description}
+              date={date}
+              loadNumber={loadNumber}
+              customer={customer}
+              type={type}
+            />
+          ))}
       </div>
     </div>
   )
@@ -146,7 +164,7 @@ interface AlertProps {
   loadNumber: number
   customer: string
   date: string
-  type: 'concern' | 'temp'
+  type: string
 }
 
 const Alert = ({
