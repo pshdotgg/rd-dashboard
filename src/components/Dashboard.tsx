@@ -14,7 +14,7 @@ export interface ChartDataType {
 }
 
 async function getChartData() {
-  const res = await fetch(`${process.env.VERCEL_URL}/api/v1/chart`)
+  const res = await fetch(`${process.env.BACKEND_URL}/api/v1/chart`)
 
   if (!res.ok) {
     throw new Error('Failed to fetch data')
@@ -24,7 +24,7 @@ async function getChartData() {
 }
 
 async function getAlerts() {
-  const res = await fetch(`${process.env.VERCEL_URL}/api/v1/alerts`)
+  const res = await fetch(`${process.env.BACKEND_URL}/api/v1/alerts`)
 
   if (!res.ok) {
     throw new Error('Failed to fetch data')

@@ -8,7 +8,7 @@ interface ActivityType {
 }
 
 async function getActivities() {
-  const res = await fetch(`${process.env.VERCEL_URL}/api/v1/activities`)
+  const res = await fetch(`${process.env.BACKEND_URL}/api/v1/activities`)
 
   if (!res.ok) {
     throw new Error('Failed to fetch data')
