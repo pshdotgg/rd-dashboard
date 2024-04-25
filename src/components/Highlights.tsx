@@ -45,48 +45,37 @@ const Highlights = async () => {
             totalPayments={5}
           />
         </div>
-        <div>
-          <div className='flex justify-between items-center'>
-            <h3 className='text-sm font-medium'>
-              Completed Activities ({completedActivities.length})
-            </h3>
-            <Button variant='link' className='text-[#11111] text-xs underline'>
-              View all
-            </Button>
-          </div>
-          <div className='rounded border border-1 border-[#cbcbcb]'>
-            {completedActivities.slice(0, 4).map(({ description }, i) => (
-              <>
-                <p className='text-xs px-3 py-3.5'>{description}</p>
-                {i < 3 ? (
-                  <Separator className='h-[1.5px] bg-[#cbcbcb]' />
-                ) : null}
-              </>
-            ))}
-          </div>
-        </div>
-        <div>
-          <div className='flex justify-between items-center'>
-            <h3 className='text-sm font-medium'>
-              Scheduled Activities ({scheduledActivities.length})
-            </h3>
-            <Button variant='link' className='text-[#11111] text-xs underline'>
-              View all
-            </Button>
-          </div>
-          <div className='rounded border border-1 border-[#cbcbcb]'>
-            {scheduledActivities.slice(0, 4).map(({ description }, i) => (
-              <>
-                <p className='text-xs px-3 py-3.5'>{description}</p>
-                {i < 3 ? (
-                  <Separator className='h-[1.5px] bg-[#cbcbcb]' />
-                ) : null}
-              </>
-            ))}
-          </div>
-        </div>
+        <Activity activities={completedActivities} />
+        <Activity activities={scheduledActivities} />
       </div>
     </section>
+  )
+}
+
+const Activity = ({ activities }) => {
+  return (
+    <div>
+      <div className='flex justify-between items-center'>
+        <h3 className='text-sm font-medium'>
+          Scheduled Activities ({activities.length})
+        </h3>
+        <Button variant='link' className='text-[#11111] text-xs underline'>
+          View all
+        </Button>
+      </div>
+      <div className='rounded border border-1 border-[#cbcbcb]'>
+        {activities.slice(0, 4).map(({ description }, i) => (
+          <div key={description} className='max-h-16'>
+            <p className='text-xs px-3 py-3.5'>
+              {description.length > 100
+                ? `${description.slice(0, 100)}...`
+                : description}
+            </p>
+            {i < 3 ? <Separator className='h-[1.5px] bg-[#cbcbcb]' /> : null}
+          </div>
+        ))}
+      </div>
+    </div>
   )
 }
 
