@@ -6,6 +6,10 @@ Dashboard:
 ![dashboard](https://github.com/pshdotgg/rd-dashboard/assets/104677763/04c78dcb-c137-4574-9b58-6ec8694535f3)
 
 Endpoints:
+1. ![https://rd-dashboard.vercel.app/api/v1/chart](https://rd-dashboard.vercel.app/api/v1/chart)
+2. ![https://rd-dashboard.vercel.app/api/v1/alerts](https://rd-dashboard.vercel.app/api/v1/alerts)
+3. ![https://rd-dashboard.vercel.app/api/v1/activities](https://rd-dashboard.vercel.app/api/v1/activities)
+
 ![endpoints](https://github.com/pshdotgg/rd-dashboard/assets/104677763/dcf90344-79c0-4761-9c1d-a01cd21adf9a)
 
 
